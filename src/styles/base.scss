@@ -1,0 +1,20 @@
+@import '../styles/color_varaibles';
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #F8F8F8 !important;
+}
+
+.app-content {
+    padding: 30px;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+p {
+    font-size: 15px;
+}

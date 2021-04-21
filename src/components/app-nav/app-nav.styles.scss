@@ -1,0 +1,31 @@
+@import '../../styles/color_varaibles';
+
+.app-nav {
+    border: .4000000059604645px solid #dbe3ee;
+    background-color: $white;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 25px;
+
+    .logo {
+        width: 80px;
+        object-fit: contain;
+    }
+
+    .menu-item__container {
+        padding: 0 8px;
+    }
+
+    .menu-items {
+        display: flex;
+        p{
+            color: #72716A;
+        }
+    }
+
+    .active-menu__item {
+        border-bottom: 2px solid $primary-color;
+        width: 50%;
+        margin: 0 0 0 auto;
+    }
+}
