@@ -1,23 +1,24 @@
-import CardComponent from "components/card-component/card-component.component";
 import React, { FC } from "react";
-import { FaAngleLeft, FaAngleRight, FaMale, FaFemale } from "react-icons/fa";
 import { QueryResponse } from "types/response";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import CardComponent from "components/card-component/card-component.component";
 
 type Props = {
   pageTitle?: string;
   pageNo?: number;
   nextPage?: any;
   prevPage?: any;
-  peopleObj?: QueryResponse;
+  spaceshipObj?: QueryResponse;
 };
 
-const PeopleComponent: FC<Props> = ({
+const SpaceshipComponent: FC<Props> = ({
   pageTitle,
   pageNo,
   nextPage,
   prevPage,
-  peopleObj,
+  spaceshipObj,
 }) => {
+
   return (
     <div className="px-4 pt-4 pb-3">
       <div className="row">
@@ -40,10 +41,10 @@ const PeopleComponent: FC<Props> = ({
         </div>
       </div>
 
-      <hr />
+      <hr/>
 
       <div className="row mt-4">
-        {peopleObj?.data?.data?.results.map((result: any, index: number) => (
+        {spaceshipObj?.data?.data?.results.map((result: any, index: number) => (
           <div className="col-md-4 mb-3">
             <CardComponent withBoxShadow>
               <div className="p-3">
@@ -52,18 +53,22 @@ const PeopleComponent: FC<Props> = ({
                   <span>{result.name}</span>
                 </p>
                 <p>
-                  <span className="text-secondary">Birthday:</span>{" "}
-                  <span>{result.birth_year}</span>
+                  <span className="text-secondary">Cost:</span>{" "}
+                  <span>{result.cost_in_credits}</span>
                 </p>
                 <p>
-                  <span className="text-secondary">Gender:</span>{" "}
-                  <span>
-                    {result.gender === "male" ? <FaMale /> : <FaFemale />}
-                  </span>
+                  <span className="text-secondary">Manufacturer:</span>{" "}
+                  <span>{result.manufacturer}</span>
                 </p>
+
                 <p>
-                  <span className="text-secondary">Height:</span>{" "}
-                  <span>{result.height}</span>
+                  <span className="text-secondary">Speed:</span>{" "}
+                  <span>{result.speed}</span>
+                </p>
+
+                <p>
+                  <span className="text-secondary">Passengers:</span>{" "}
+                  <span>{result.passengers}</span>
                 </p>
               </div>
             </CardComponent>
@@ -74,4 +79,4 @@ const PeopleComponent: FC<Props> = ({
   );
 };
 
-export default PeopleComponent;
+export default SpaceshipComponent;

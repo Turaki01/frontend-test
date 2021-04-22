@@ -10,6 +10,7 @@ import DashboardCard from "./dashboard-card/dashboard-card.component";
 
 import "./dashboard.styles.scss";
 import PeopleComponent from "./people/people.component";
+import SpaceshipComponent from "./spaceship/spaceship.component";
 
 const Dashboard = () => {
   const [toggleOption, setToggleOption] = useState("people");
@@ -52,12 +53,12 @@ const Dashboard = () => {
           People
         </div>
         <div
-          onClick={() => setToggleOption("starships")}
+          onClick={() => setToggleOption("spaceships")}
           className={`items-div ${
-            toggleOption === "starships" ? "selected-toggle" : ""
+            toggleOption === "spaceships" ? "selected-toggle" : ""
           } cursor`}
         >
-          Starships
+          Spaceships
         </div>
         <div
           onClick={() => setToggleOption("vehicles")}
@@ -80,6 +81,10 @@ const Dashboard = () => {
               prevPage={prevPage}
               peopleObj={peopleObj}
             />
+          )}
+
+          {toggleOption === "spaceships" && (
+            <SpaceshipComponent pageTitle={toggleOption} spaceshipObj={spaceshipObj} />
           )}
         </>
       </CardComponent>
