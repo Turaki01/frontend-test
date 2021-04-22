@@ -1,4 +1,5 @@
 import CardComponent from "components/card-component/card-component.component";
+import CardLoader from "components/card-loader/card-loader.component";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { getAllFilm } from "services/getFilmServices";
@@ -74,26 +75,38 @@ const Dashboard = () => {
       <CardComponent withBoxShadow>
         <>
           {/* result card section */}
-          {toggleOption === "people" && (
-            <PeopleComponent
-              pageTitle={toggleOption}
-              pageNo={peoplePage}
-              nextPage={nextPage}
-              prevPage={prevPage}
-              peopleObj={peopleObj}
-            />
-          )}
+          {toggleOption === "people" &&
+            (peopleObj.status === "loading" ? (
+              <CardLoader />
+            ) : (
+              <PeopleComponent
+                pageTitle={toggleOption}
+                pageNo={peoplePage}
+                nextPage={nextPage}
+                prevPage={prevPage}
+                peopleObj={peopleObj}
+              />
+            ))}
 
-          {toggleOption === "spaceships" && (
-            <SpaceshipComponent
-              pageTitle={toggleOption}
-              spaceshipObj={spaceshipObj}
-            />
-          )}
+          {toggleOption === "spaceships" &&
+            (spaceshipObj.status === "loading" ? (
+              <CardLoader />
+            ) : (
+              <SpaceshipComponent
+                pageTitle={toggleOption}
+                spaceshipObj={spaceshipObj}
+              />
+            ))}
 
-          {toggleOption === "vehicles" && (
-            <VehiclesComponent pageTitle={toggleOption} vehiclesObj={vehiclesObj} />
-          )}
+          {toggleOption === "vehicles" &&
+            (vehiclesObj.status === "loading" ? (
+              <CardLoader />
+            ) : (
+              <VehiclesComponent
+                pageTitle={toggleOption}
+                vehiclesObj={vehiclesObj}
+              />
+            ))}
         </>
       </CardComponent>
     </div>
