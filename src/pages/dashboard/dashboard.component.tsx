@@ -19,13 +19,19 @@ const Dashboard = () => {
 
   // pagination data
   const [peoplePage, setPeoplePage] = useState(1);
+  const [spaceshipPage, setSpaceshipPage] = useState(1);
+  const [vehiclesPage, setVehiclesPage] = useState(1);
 
   const filmObj = useQuery("films", getAllFilm);
-  const spaceshipObj = useQuery("starship", getAllStarShip);
+  const spaceshipObj = useQuery(["starship", spaceshipPage], () =>
+    getAllStarShip(spaceshipPage)
+  );
   const peopleObj = useQuery(["people", peoplePage], () =>
     getAllPeople(peoplePage)
   );
-  const vehiclesObj = useQuery("vehicles", getAllVehicles);
+  const vehiclesObj = useQuery(["vehicles", vehiclesPage], () =>
+    getAllVehicles(vehiclesPage)
+  );
   const speciesObj = useQuery("species", getAllSpecie);
 
   const nextPage = (): void => {
@@ -33,7 +39,12 @@ const Dashboard = () => {
       case "people":
         setPeoplePage(peoplePage + 1);
         break;
-
+      case "spaceships":
+        setSpaceshipPage(spaceshipPage + 1);
+        break;
+      case "vehicles":
+        setVehiclesPage(vehiclesPage + 1);
+        break;
       default:
         break;
     }
@@ -46,7 +57,16 @@ const Dashboard = () => {
           setPeoplePage(peoplePage - 1);
         }
         break;
-
+      case "spaceships":
+        if (spaceshipPage > 1) {
+          setSpaceshipPage(spaceshipPage - 1);
+        }
+        break;
+      case "vehicles":
+        if (vehiclesPage > 1) {
+          setVehiclesPage(vehiclesPage - 1);
+        }
+        break;
       default:
         break;
     }
@@ -112,6 +132,9 @@ const Dashboard = () => {
               <SpaceshipComponent
                 pageTitle={toggleOption}
                 spaceshipObj={spaceshipObj}
+                pageNo={spaceshipPage}
+                nextPage={nextPage}
+                prevPage={prevPage}
               />
             ))}
 
@@ -122,6 +145,9 @@ const Dashboard = () => {
               <VehiclesComponent
                 pageTitle={toggleOption}
                 vehiclesObj={vehiclesObj}
+                pageNo={vehiclesPage}
+                nextPage={nextPage}
+                prevPage={prevPage}
               />
             ))}
         </>
