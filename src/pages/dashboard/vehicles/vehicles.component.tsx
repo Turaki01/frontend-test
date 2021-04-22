@@ -9,6 +9,7 @@ type Props = {
   nextPage?: any;
   prevPage?: any;
   vehiclesObj?: QueryResponse;
+  isNextEnable?: boolean;
 };
 
 const VehiclesComponent: FC<Props> = ({
@@ -17,6 +18,7 @@ const VehiclesComponent: FC<Props> = ({
   nextPage,
   prevPage,
   vehiclesObj,
+  isNextEnable,
 }) => {
   return (
     <div className="px-4 pt-4 pb-3">
@@ -27,13 +29,17 @@ const VehiclesComponent: FC<Props> = ({
 
         <div className="col-8 d-flex justify-content-end align-items-center">
           <div className="d-flex">
-            <div className="navigation-div mr-2 align-items-center d-flex cursor">
-              <FaAngleLeft onClick={prevPage} />
-            </div>
+            {!isNextEnable && (
+              <div className="navigation-div mr-2 align-items-center d-flex cursor">
+                <FaAngleLeft onClick={prevPage} />
+              </div>
+            )}
 
-            <div className="navigation-div align-items-center d-flex cursor">
-              <FaAngleRight onClick={nextPage} />
-            </div>
+            {!isNextEnable && (
+              <div className="navigation-div align-items-center d-flex cursor">
+                <FaAngleRight onClick={nextPage} />
+              </div>
+            )}
           </div>
 
           <p className="mb-0 text-secondary ml-2">Page {pageNo}</p>
@@ -43,7 +49,7 @@ const VehiclesComponent: FC<Props> = ({
       <hr />
 
       <div className="row mt-4">
-      {vehiclesObj?.data?.data?.results.map((result: any, index: number) => (
+        {vehiclesObj?.data?.data?.results.map((result: any, index: number) => (
           <div key={result.name + index} className="col-md-6 mb-3">
             <CardComponent withBoxShadow>
               <div className="p-3">

@@ -7,6 +7,7 @@ import { getAllPeople } from "services/getPeopleService";
 import { getAllStarShip } from "services/getSpaceshipService";
 import { getAllSpecie } from "services/getSpeciesService";
 import { getAllVehicles } from "services/getVehiclesService";
+import PaginationUtil from "utils/pagination-util";
 import DashboardCard from "./dashboard-card/dashboard-card.component";
 
 import "./dashboard.styles.scss";
@@ -122,6 +123,7 @@ const Dashboard = () => {
                 nextPage={nextPage}
                 prevPage={prevPage}
                 peopleObj={peopleObj}
+                isNextEnable={PaginationUtil.isNextCheck(peopleObj?.data?.data?.count, peoplePage, 10)}
               />
             ))}
 
@@ -135,6 +137,7 @@ const Dashboard = () => {
                 pageNo={spaceshipPage}
                 nextPage={nextPage}
                 prevPage={prevPage}
+                isNextEnable={PaginationUtil.isNextCheck(spaceshipObj?.data?.data?.count, spaceshipPage, 10)}
               />
             ))}
 
@@ -148,6 +151,7 @@ const Dashboard = () => {
                 pageNo={vehiclesPage}
                 nextPage={nextPage}
                 prevPage={prevPage}
+                isNextEnable={PaginationUtil.isNextCheck(vehiclesObj?.data?.data?.count, vehiclesPage, 10)}
               />
             ))}
         </>

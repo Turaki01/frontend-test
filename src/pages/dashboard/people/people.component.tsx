@@ -9,6 +9,7 @@ type Props = {
   nextPage?: any;
   prevPage?: any;
   peopleObj?: QueryResponse;
+  isNextEnable?: boolean;
 };
 
 const PeopleComponent: FC<Props> = ({
@@ -17,7 +18,11 @@ const PeopleComponent: FC<Props> = ({
   nextPage,
   prevPage,
   peopleObj,
+  isNextEnable,
 }) => {
+  console.log(peopleObj?.data.data);
+  console.log(pageNo)
+
   return (
     <div className="px-4 pt-4 pb-3">
       <div className="row">
@@ -27,13 +32,17 @@ const PeopleComponent: FC<Props> = ({
 
         <div className="col-8 d-flex justify-content-end align-items-center">
           <div className="d-flex">
+            { Number(pageNo) > 1  &&
             <div className="navigation-div mr-2 align-items-center d-flex cursor">
               <FaAngleLeft onClick={prevPage} />
             </div>
+            }
 
-            <div className="navigation-div align-items-center d-flex cursor">
-              <FaAngleRight onClick={nextPage} />
-            </div>
+            {!isNextEnable && (
+              <div className="navigation-div align-items-center d-flex cursor">
+                <FaAngleRight onClick={nextPage} />
+              </div>
+            )}
           </div>
 
           <p className="mb-0 text-secondary ml-2">Page {pageNo}</p>

@@ -9,6 +9,7 @@ type Props = {
   nextPage?: any;
   prevPage?: any;
   spaceshipObj?: QueryResponse;
+  isNextEnable?: boolean;
 };
 
 const SpaceshipComponent: FC<Props> = ({
@@ -17,8 +18,8 @@ const SpaceshipComponent: FC<Props> = ({
   nextPage,
   prevPage,
   spaceshipObj,
+  isNextEnable
 }) => {
-
   return (
     <div className="px-4 pt-4 pb-3">
       <div className="row">
@@ -28,20 +29,24 @@ const SpaceshipComponent: FC<Props> = ({
 
         <div className="col-8 d-flex justify-content-end align-items-center">
           <div className="d-flex">
-            <div className="navigation-div mr-2 align-items-center d-flex cursor">
-              <FaAngleLeft onClick={prevPage} />
-            </div>
+            {Number(pageNo) > 1 && (
+              <div className="navigation-div mr-2 align-items-center d-flex cursor">
+                <FaAngleLeft onClick={prevPage} />
+              </div>
+            )}
 
-            <div className="navigation-div align-items-center d-flex cursor">
-              <FaAngleRight onClick={nextPage} />
-            </div>
+            {!isNextEnable && (
+              <div className="navigation-div align-items-center d-flex cursor">
+                <FaAngleRight onClick={nextPage} />
+              </div>
+            )}
           </div>
 
           <p className="mb-0 text-secondary ml-2">Page {pageNo}</p>
         </div>
       </div>
 
-      <hr/>
+      <hr />
 
       <div className="row mt-4">
         {spaceshipObj?.data?.data?.results.map((result: any, index: number) => (
