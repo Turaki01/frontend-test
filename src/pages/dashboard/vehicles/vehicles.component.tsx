@@ -8,17 +8,16 @@ type Props = {
   pageNo?: number;
   nextPage?: any;
   prevPage?: any;
-  spaceshipObj?: QueryResponse;
+  vehiclesObj?: QueryResponse;
 };
 
-const SpaceshipComponent: FC<Props> = ({
+const VehiclesComponent: FC<Props> = ({
   pageTitle,
   pageNo,
   nextPage,
   prevPage,
-  spaceshipObj,
+  vehiclesObj,
 }) => {
-
   return (
     <div className="px-4 pt-4 pb-3">
       <div className="row">
@@ -41,10 +40,10 @@ const SpaceshipComponent: FC<Props> = ({
         </div>
       </div>
 
-      <hr/>
+      <hr />
 
       <div className="row mt-4">
-        {spaceshipObj?.data?.data?.results.map((result: any, index: number) => (
+      {vehiclesObj?.data?.data?.results.map((result: any, index: number) => (
           <div key={result.name + index} className="col-md-6 mb-3">
             <CardComponent withBoxShadow>
               <div className="p-3">
@@ -79,4 +78,4 @@ const SpaceshipComponent: FC<Props> = ({
   );
 };
 
-export default SpaceshipComponent;
+export default VehiclesComponent;

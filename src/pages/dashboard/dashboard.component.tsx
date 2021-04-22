@@ -11,6 +11,7 @@ import DashboardCard from "./dashboard-card/dashboard-card.component";
 import "./dashboard.styles.scss";
 import PeopleComponent from "./people/people.component";
 import SpaceshipComponent from "./spaceship/spaceship.component";
+import VehiclesComponent from "./vehicles/vehicles.component";
 
 const Dashboard = () => {
   const [toggleOption, setToggleOption] = useState("people");
@@ -84,7 +85,14 @@ const Dashboard = () => {
           )}
 
           {toggleOption === "spaceships" && (
-            <SpaceshipComponent pageTitle={toggleOption} spaceshipObj={spaceshipObj} />
+            <SpaceshipComponent
+              pageTitle={toggleOption}
+              spaceshipObj={spaceshipObj}
+            />
+          )}
+
+          {toggleOption === "vehicles" && (
+            <VehiclesComponent pageTitle={toggleOption} vehiclesObj={vehiclesObj} />
           )}
         </>
       </CardComponent>

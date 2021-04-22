@@ -44,7 +44,7 @@ const PeopleComponent: FC<Props> = ({
 
       <div className="row mt-4">
         {peopleObj?.data?.data?.results.map((result: any, index: number) => (
-          <div className="col-md-4 mb-3">
+          <div key={result.name + index} className="col-md-4 mb-3">
             <CardComponent withBoxShadow>
               <div className="p-3">
                 <p>
