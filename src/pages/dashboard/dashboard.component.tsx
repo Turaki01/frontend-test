@@ -16,22 +16,39 @@ import VehiclesComponent from "./vehicles/vehicles.component";
 
 const Dashboard = () => {
   const [toggleOption, setToggleOption] = useState("people");
-  const filmObj = useQuery("films", getAllFilm);
-  const spaceshipObj = useQuery("starship", getAllStarShip);
-  const peopleObj = useQuery("people", getAllPeople);
-  const vehiclesObj = useQuery("vehicles", getAllVehicles);
-  const speciesObj = useQuery("species", getAllSpecie);
 
   // pagination data
   const [peoplePage, setPeoplePage] = useState(1);
 
+  const filmObj = useQuery("films", getAllFilm);
+  const spaceshipObj = useQuery("starship", getAllStarShip);
+  const peopleObj = useQuery(["people", peoplePage], () =>
+    getAllPeople(peoplePage)
+  );
+  const vehiclesObj = useQuery("vehicles", getAllVehicles);
+  const speciesObj = useQuery("species", getAllSpecie);
+
   const nextPage = (): void => {
-    setPeoplePage(peoplePage + 1);
+    switch (toggleOption) {
+      case "people":
+        setPeoplePage(peoplePage + 1);
+        break;
+
+      default:
+        break;
+    }
   };
 
   const prevPage = (): void => {
-    if (peoplePage > 1) {
-      setPeoplePage(peoplePage - 1);
+    switch (toggleOption) {
+      case "people":
+        if (peoplePage > 1) {
+          setPeoplePage(peoplePage - 1);
+        }
+        break;
+
+      default:
+        break;
     }
   };
 
