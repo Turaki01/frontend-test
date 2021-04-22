@@ -27,7 +27,7 @@ const AppNav: FC<RouteComponentProps> = ({ history }) => {
           )}
         </div>
 
-        <div className="menu-item__container">
+        {/* <div className="menu-item__container">
           <p className="cursor" onClick={() => history.push(constants.starships)}>
             Starships
           </p>
@@ -38,18 +38,15 @@ const AppNav: FC<RouteComponentProps> = ({ history }) => {
 
         <div className="menu-item__container">
           <p className="cursor">People</p>
-          {/* <div className="active-menu__item"></div> */}
         </div>
 
         <div className="menu-item__container">
           <p className="cursor">Vehicles</p>
-          {/* <div className="active-menu__item"></div> */}
         </div>
 
         <div className="menu-item__container">
           <p className="cursor">Species</p>
-          {/* <div className="active-menu__item"></div> */}
-        </div>
+        </div> */}
       </div>
     </div>
   );
